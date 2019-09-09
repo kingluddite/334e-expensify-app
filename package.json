@@ -1,0 +1,68 @@
+{
+  "name": "peh2-react-boilerplate",
+  "version": "1.0.0",
+  "description": "Starting point for build modern websites",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev-server": "webpack-dev-server",
+    "fix-styles": "prettier-stylelint --write 'src/**/*.{css,scss}' "
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 9"
+  ],
+  "keywords": [],
+  "author": "Kingluddite",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.6.1",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "eslint": "4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "2.7.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.1",
+    "eslint-plugin-prettier": "2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "node-sass": "^4.12.0",
+    "postcss-loader": "^3.0.0",
+    "prettier": "1.8.2",
+    "prettier-eslint-cli": "^4.4.0",
+    "prettier-stylelint": "^0.4.2",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^0.18.2",
+    "stylelint": "^10.1.0",
+    "stylelint-order": "^3.1.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "normalize.css": "^8.0.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-modal": "^3.10.1",
+    "strip-ansi": "^5.2.0",
+    "validator": "^11.1.0"
+  }
+}
