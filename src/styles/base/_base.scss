@@ -22,3 +22,7 @@ button:disabled {
   cursor: default; // arrow cursor
 }
 
+// make active page bold
+.is-active {
+  font-weight: bold;
+}
