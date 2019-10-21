@@ -12,13 +12,23 @@ const now = moment();
 console.log(now.format('MMM Do, YYYY'));
 
 export default class ExpenseForm extends Component {
-  state = {
-    description: '',
-    note: '',
-    amount: '',
-    createdAt: moment(),
-    calendarFocused: false,
-  };
+  // static propTypes = {
+  //   j
+  // }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      description: props.expense ? props.expense.description : '',
+      note: props.expense ? props.expense.note : '',
+      amount: props.expense ? (props.expense.amount / 100).toString() : '',
+      createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+      calendarFocused: false,
+      descError: '',
+      amtError: '',
+    };
+  }
 
   onDescriptionChange = e => {
     const description = e.target.value;
@@ -37,7 +47,7 @@ export default class ExpenseForm extends Component {
   onAmountChange = e => {
     const amount = e.target.value;
 
-    if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+    if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
       this.setState({
         amount,
       });
@@ -45,16 +55,51 @@ export default class ExpenseForm extends Component {
   };
 
   onDateChange = createdAt => {
-    this.setState({ createdAt });
+    if (createdAt) {
+      this.setState({ createdAt });
+    }
   };
 
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   };
 
+  onSubmit = e => {
+    e.preventDefault();
+
+    if (!this.state.description) {
+      this.setState({
+        descError: 'Please provide description',
+      });
+    } else {
+      this.setState({
+        descError: '',
+      });
+    }
+
+    if (!this.state.amount) {
+      this.setState({
+        amtError: 'Please provide amount',
+      });
+    } else {
+      this.setState({
+        amtError: '',
+      });
+    }
+    // console.log('form submitted');
+    this.props.onSubmit({
+      description: this.state.description,
+      amount: parseFloat(this.state.amount) * 100,
+      note: this.state.note,
+      createdAt: this.state.createdAt.valueOf(),
+    });
+  };
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.onSubmit}>
+        {this.state.descError && <p>{this.state.descError}</p>}
+        {this.state.amtError && <p>{this.state.amtError}</p>}
         <input
           type="text"
           placeholder="Description"
