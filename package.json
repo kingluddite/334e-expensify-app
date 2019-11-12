@@ -7,7 +7,7 @@
     "build": "webpack",
     "fix-styles": "prettier-stylelint --write 'src/**/*.{css,scss}' ",
     "dev-server": "webpack-dev-server --open",
-    "test": "jest"
+    "test": "jest --config=jest.config.json"
   },
   "babel": {
     "presets": [
@@ -39,6 +39,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "enzyme-to-json": "^3.4.3",
     "eslint": "4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "2.7.0",
@@ -64,9 +65,12 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@types/react": "^16.9.2",
     "@types/redux": "^3.6.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
+    "raf": "^3.4.1",
     "react": "^16.8.0",
     "react-addons-shallow-compare": "^15.6.2",
     "react-dates": "^21.2.1",
@@ -74,6 +78,7 @@
     "react-modal": "^3.10.1",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
+    "react-test-renderer": "^16.11.0",
     "redux": "^4.0.4",
     "strip-ansi": "^5.2.0",
     "uuid": "^3.3.3",
