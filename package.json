@@ -67,6 +67,7 @@
     "@types/redux": "^3.6.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
+    "firebase": "^7.4.0",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
