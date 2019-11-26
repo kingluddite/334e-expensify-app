@@ -81,6 +81,7 @@
     "react-router-dom": "^5.0.1",
     "react-test-renderer": "^16.11.0",
     "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "strip-ansi": "^5.2.0",
     "uuid": "^3.3.3",
     "validator": "^11.1.0"
