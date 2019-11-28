@@ -7,7 +7,6 @@ export const addExpense = expense => ({
 });
 
 export const startAddExpense = (expenseData = {}) => dispatch => {
-  console.log('startAddExpense called');
   const {
     description = '',
     note = '',

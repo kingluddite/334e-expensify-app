@@ -9,7 +9,6 @@ const date = new Date();
 
 // the moment way
 const now = moment();
-console.log(now.format('MMM Do, YYYY'));
 
 export default class ExpenseForm extends Component {
   // static propTypes = {
