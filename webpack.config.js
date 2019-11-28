@@ -12,32 +12,32 @@ const devMode = process.env.NODE_ENV !== 'production';
 module.exports = env => {
   // Get the root path (assuming your webpack config is in the root of your project)
   if (devMode) {
-  const currentPath = path.join(__dirname);
+    const currentPath = path.join(__dirname);
 
-  // Create the fallback path (the production .env)
-  const basePath = `${currentPath}/.env`;
+    // Create the fallback path (the production .env)
+    const basePath = `${currentPath}/.env`;
 
-  // We're concatenating the environment name to our filename to specify the correct .env file
-  const envPath = `${basePath}.${env.ENVIRONMENT}`;
+    // We're concatenating the environment name to our filename to specify the correct .env file
+    const envPath = `${basePath}.${env.ENVIRONMENT}`;
 
-  // Check if the file exists, otherwise fall back to the production .env
-  const finalPath = fs.existsSync(envPath) ? envPath : basePath;
+    // Check if the file exists, otherwise fall back to the production .env
+    const finalPath = fs.existsSync(envPath) ? envPath : basePath;
 
-  // Set the path parameter in the dotenv config
-  const fileEnv = dotenv.config({ path: finalPath }).parsed;
+    // Set the path parameter in the dotenv config
+    const fileEnv = dotenv.config({ path: finalPath }).parsed;
 
-  // call dotenv and it will return an Object with a parsed key
-  // const env = dotenv.config().parsed;
+    // call dotenv and it will return an Object with a parsed key
+    // const env = dotenv.config().parsed;
 
-  // reduce it to a nice object with the variables from the file
-  const envKeys = Object.keys(fileEnv).reduce((prev, next) => {
-    prev[`process.env.${next}`] = JSON.stringify(fileEnv[next]);
-    return prev;
-  }, {});
+    // reduce it to a nice object with the variables from the file
+    const envKeys = Object.keys(fileEnv).reduce((prev, next) => {
+      prev[`process.env.${next}`] = JSON.stringify(fileEnv[next]);
+      return prev;
+    }, {});
 
-  // console.log('env', env);
-  // const isProduction = env === 'production';
-  console.log(process.env.ENVIRONMENT);
+    // console.log('env', env);
+    // const isProduction = env === 'production';
+    console.log(process.env.ENVIRONMENT);
   }
   const isProduction = process.env.ENVIRONMENT === 'Production';
   const CSSExtract = new MiniCssExtractPlugin({
