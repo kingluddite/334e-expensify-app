@@ -11,6 +11,7 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = env => {
   // Get the root path (assuming your webpack config is in the root of your project)
+  if (devMode) {
   const currentPath = path.join(__dirname);
 
   // Create the fallback path (the production .env)
@@ -37,6 +38,7 @@ module.exports = env => {
   // console.log('env', env);
   // const isProduction = env === 'production';
   console.log(process.env.ENVIRONMENT);
+  }
   const isProduction = process.env.ENVIRONMENT === 'Production';
   const CSSExtract = new MiniCssExtractPlugin({
     filename: devMode ? '[name].css' : '[name].[hash].css',
