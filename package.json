@@ -9,7 +9,9 @@
     "build:prod": "webpack -p --env.ENVIRONMENT=production --config webpack.config.js",
     "fix-styles": "prettier-stylelint --write 'src/**/*.{css,scss}' ",
     "dev-server": "webpack-dev-server --env.ENVIRONMENT=development --open",
-    "test": "cross-env NODE_ENV=test jest --config=jest.config.json --watchAll"
+    "test": "cross-env NODE_ENV=test jest --config=jest.config.json --watchAll",
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run build:prod"
   },
   "babel": {
     "presets": [
@@ -73,6 +75,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint-plugin-jest": "^23.0.5",
+    "express": "^4.17.1",
     "firebase": "^7.4.0",
     "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^0.8.0",
