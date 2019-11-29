@@ -11,7 +11,7 @@ const prodMode = process.env.NODE_ENV === 'production';
 module.exports = env => {
   // console.log('env', env);
   // const isProduction = env === 'production';
-  console.log(process.env.ENVIRONMENT);
+  console.log(process.env.NODE_ENV);
   const CSSExtract = new MiniCssExtractPlugin({
     filename: '[name].[hash].css',
     chunkFilename: '[id].[hash].css',
