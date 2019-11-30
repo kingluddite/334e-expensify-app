@@ -104,12 +104,6 @@ module.exports = env => {
         'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(
           process.env.FIREBASE_API_KEY
         ),
-        'process.env.FIREBASE_MESSAGING_SENDER_TO': JSON.stringify(
-          process.env.FIREBASE_FIREBASE_API_KEY
-        ),
-        'process.env.FIREBASE_APP_ID': JSON.stringify(
-          process.env.FIREBASE_APP_ID
-        ),
       }),
     ],
     devtool: 'source-map',
