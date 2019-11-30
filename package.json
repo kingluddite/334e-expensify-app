@@ -4,9 +4,8 @@
   "description": "Starting point for build modern websites",
   "main": "index.js",
   "scripts": {
-    "serve": "live-server public/",
     "build:dev": "webpack --env.ENVIRONMENT=development --config webpack.config.js",
-    "build:prod": "webpack -p --config webpack.config.prod.js",
+    "build:prod": "webpack -p --config webpack.config.js",
     "fix-styles": "prettier-stylelint --write 'src/**/*.{css,scss}' ",
     "dev-server": "webpack-dev-server --env.ENVIRONMENT=development --open",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json --watchAll",
