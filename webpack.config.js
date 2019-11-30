@@ -49,9 +49,12 @@ module.exports = env => {
   // const isProduction = env === 'production';
   console.log(process.env.ENVIRONMENT);
   const isProduction = process.env.ENVIRONMENT === 'Production';
+  // const CSSExtract = new MiniCssExtractPlugin({
+  //   filename: devMode ? '[name].css' : '[name].[hash].css',
+  //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+  // });
   const CSSExtract = new MiniCssExtractPlugin({
-    filename: devMode ? '[name].css' : '[name].[hash].css',
-    chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+    filename: 'main.css',
   });
 
   return {
