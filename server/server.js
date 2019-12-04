@@ -1,10 +1,13 @@
 const path = require('path');
 const express = require('express');
 
+const { EV_PORT } = require('./config');
+
 const app = express();
+
 const publicPath = path.join(__dirname, '..', 'public');
 // Heroku port
-const port = process.env.PORT ? process.env.PORT : 3000;
+const port = EV_PORT || 3000;
 
 app.use(express.static(path.join(publicPath)));
 
@@ -14,5 +17,7 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('Server is running. You better go catch it! LOL');
+  console.log(
+    `Server is running. You better go catch it! LOL. I am listening on ${port}`
+  );
 });

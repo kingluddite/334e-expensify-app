@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import ExpenseForm from './ExpenseForm';
-import { startAddExpense } from '../actions/expenses';
+import { addExpense } from '../actions/expenses';
 
-export class AddExpensePage extends Component {
-  // (no-undef)
-  // eslint-disable-next-line
+export class AddExpensePage extends React.Component {
   onSubmit = expense => {
-    this.props.startAddExpense(expense);
+    this.props.addExpense(expense);
     this.props.history.push('/');
   };
-
   render() {
     return (
       <div>
@@ -22,13 +18,8 @@ export class AddExpensePage extends Component {
   }
 }
 
-AddExpensePage.propTypes = {
-  history: PropTypes.object,
-  startAddExpense: PropTypes.func,
-};
-
 const mapDispatchToProps = dispatch => ({
-  startAddExpense: expense => dispatch(startAddExpense(expense)),
+  addExpense: expense => dispatch(addExpense(expense)),
 });
 
 export default connect(undefined, mapDispatchToProps)(AddExpensePage);
