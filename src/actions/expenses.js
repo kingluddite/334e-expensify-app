@@ -14,7 +14,32 @@ export const startAddExpense = (expenseData = {}) => dispatch => {
     createdAt = 0,
   } = expenseData;
   const expense = { description, note, amount, createdAt };
-  database
+
+  return database
+    .ref('expenses')
+    .push(expense)
+    .then(ref => {
+      dispatch(
+        addExpense({
+          id: ref.key,
+          ...expense,
+        })
+      );
+    })
+    .catch(error => {
+      console.log('could not add expense', error);
+    });
+};
+export const startAddExpense = (expenseData = {}) => dispatch => {
+  const {
+    description = '',
+    note = '',
+    amount = 0,
+    createdAt = 0,
+  } = expenseData;
+  const expense = { description, note, amount, createdAt };
+
+  return database
     .ref('expenses')
     .push(expense)
     .then(ref => {
@@ -42,3 +67,14 @@ export const editExpense = (id, updates) => ({
   id,
   updates,
 });
+
+// SET_EXPENSES
+export const setExpenses = expenses => ({
+  type: 'SET_EXPENSES',
+  expenses,
+});
+
+// export const startSetExpenses;
+
+// 1. Fetch all expense data once
+// 2. Parse that data into an array (we did parsing inside firebase.js)
