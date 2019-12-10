@@ -106,7 +106,7 @@ module.exports = env => {
         ),
       }),
     ],
-    devtool: 'source-map',
+    devtool: !devMode ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true,

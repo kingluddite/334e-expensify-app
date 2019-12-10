@@ -30,30 +30,6 @@ export const startAddExpense = (expenseData = {}) => dispatch => {
       console.log('could not add expense', error);
     });
 };
-export const startAddExpense = (expenseData = {}) => dispatch => {
-  const {
-    description = '',
-    note = '',
-    amount = 0,
-    createdAt = 0,
-  } = expenseData;
-  const expense = { description, note, amount, createdAt };
-
-  return database
-    .ref('expenses')
-    .push(expense)
-    .then(ref => {
-      dispatch(
-        addExpense({
-          id: ref.key,
-          ...expense,
-        })
-      );
-    })
-    .catch(error => {
-      console.log('could not add expense', error);
-    });
-};
 
 // REMOVE_EXPENSE
 export const removeExpense = ({ id } = {}) => ({
@@ -74,7 +50,23 @@ export const setExpenses = expenses => ({
   expenses,
 });
 
-// export const startSetExpenses;
+/*eslint-disable */
+export const startSetExpenses = () => {
+  return dispatch => {
+    return database
+      .ref('expenses')
+      .once('value')
+      .then(snapshot => {
+        const expenses = [];
 
-// 1. Fetch all expense data once
-// 2. Parse that data into an array (we did parsing inside firebase.js)
+        snapshot.forEach(childSnapshot => {
+          expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val(),
+          });
+        });
+        dispatch(setExpenses(expenses));
+      });
+  };
+};
+/* eslint-enable */

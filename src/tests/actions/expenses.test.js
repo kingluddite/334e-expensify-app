@@ -8,6 +8,7 @@ import {
   editExpense,
   removeExpense,
   setExpenses,
+  startSetExpenses,
 } from '../../actions/expenses';
 import { expenses } from '../fixtures/expenses';
 
@@ -94,14 +95,17 @@ test('should add expense with defaults to database and store', done => {
     amount: 0,
     createdAt: 0,
   };
+
   store
     .dispatch(startAddExpense({}))
     .then(() => {
       const actions = store.getActions();
       expect(actions[0]).toEqual({
         type: 'ADD_EXPENSE',
-        id: expect.any(String),
-        ...expenseDefaults,
+        expense: {
+          id: expect.any(String),
+          ...expenseDefaults,
+        },
       });
 
       return database.ref(`expenses/${actions[0].expense.id}`).once('value');
@@ -118,5 +122,18 @@ test('should setup set expense action object with data', () => {
   expect(action).toEqual({
     type: 'SET_EXPENSES',
     expenses,
+  });
+});
+
+test('should fetch the expenses from firebase', done => {
+  const store = createMockStore({});
+
+  store.dispatch(startSetExpenses()).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'SET_EXPENSES',
+      expenses,
+    });
+    done();
   });
 });
