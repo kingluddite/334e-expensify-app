@@ -6,14 +6,19 @@ import { Provider } from 'react-redux';
 import 'normalize.css/normalize.css';
 import 'react-dates/lib/css/_datepicker.css';
 // custom JS
+// firebase (Database)
+import { firebase } from './firebase/firebase';
+// Redux store
 import configureStore from './store/configureStore'; // Redux store
+// actions
 import { startSetExpenses } from './actions/expenses';
-import { setTextFilter } from './actions/filters';
+import { login, logout } from './actions/auth';
+// selectors
 import getVisibleExpenses from './selectors/expenses';
+// routes
 import AppRouter, { history } from './routers/AppRouter';
 // custom CSS
 import './styles/styles.scss';
-import { firebase } from './firebase/firebase';
 
 const store = configureStore();
 
@@ -23,6 +28,7 @@ const jsx = (
   </Provider>
 );
 
+// check if rendered before rendering
 let hasRendered = false;
 const renderApp = () => {
   if (!hasRendered) {
@@ -35,6 +41,8 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
+    // console.log('uid: ', user.uid);
+    store.dispatch(login(user.uid));
     store.dispatch(startSetExpenses()).then(() => {
       renderApp();
       if (history.location.pathname === '/') {
@@ -42,6 +50,7 @@ firebase.auth().onAuthStateChanged(user => {
       }
     });
   } else {
+    store.dispatch(logout());
     renderApp();
     history.push('/');
   }
