@@ -1,3 +1,4 @@
+/* eslint no-undef: 0 */ // --> OFF
 import React, { Component } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -11,15 +12,6 @@ const date = new Date();
 const now = moment();
 
 export default class ExpenseForm extends Component {
-  static propTypes = {
-    onDescriptionChange: PropTypes.func,
-    onNotesChange: PropTypes.func,
-    onAmountChange: PropTypes.func,
-    onDateChange: PropTypes.func,
-    onFocusChange: PropTypes.func,
-    onSubmit: PropTypes.func,
-  };
-
   constructor(props) {
     super(props);
 
@@ -89,40 +81,48 @@ export default class ExpenseForm extends Component {
 
   render() {
     return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.onSubmit}>
-          <input
-            id="description"
-            type="text"
-            placeholder="Description"
-            value={this.state.description}
-            onChange={this.onDescriptionChange}
-          />
-          <input
-            id="amount"
-            type="text"
-            placeholder="Amount"
-            value={this.state.amount}
-            onChange={this.onAmountChange}
-          />
-          <SingleDatePicker
-            date={this.state.createdAt} // momentPropTypes.momentObj or null
-            onDateChange={this.onDateChange} // PropTypes.func.isRequired
-            focused={this.state.calendarFocused} // PropTypes.bool
-            onFocusChange={this.onFocusChange} // PropTypes.func.isRequired
-            id="expenseDatePicker" // PropTypes.string.isRequired,
-            numberOfMonths={1}
-            isOutsideRange={() => false}
-          />
-          <textarea
-            placeholder="Add a note for your expense (optional)"
-            onChange={this.onNoteChange}
-            value={this.state.note}
-          />
-          <button>Add Expense</button>
-        </form>
-      </div>
+      <form className="form" onSubmit={this.onSubmit}>
+        {this.state.error && <p className="form__error">{this.state.error}</p>}
+        <input
+          id="description"
+          className="text-input"
+          type="text"
+          placeholder="Description"
+          value={this.state.description}
+          onChange={this.onDescriptionChange}
+        />
+        <input
+          id="amount"
+          type="text"
+          className="text-input"
+          placeholder="Amount"
+          value={this.state.amount}
+          onChange={this.onAmountChange}
+        />
+        <SingleDatePicker
+          date={this.state.createdAt} // momentPropTypes.momentObj or null
+          onDateChange={this.onDateChange} // PropTypes.func.isRequired
+          focused={this.state.calendarFocused} // PropTypes.bool
+          onFocusChange={this.onFocusChange} // PropTypes.func.isRequired
+          id="expenseDatePicker" // PropTypes.string.isRequired,
+          numberOfMonths={1}
+          isOutsideRange={() => false}
+        />
+        <textarea
+          className="textarea"
+          placeholder="Add a note for your expense (optional)"
+          onChange={this.onNoteChange}
+          value={this.state.note}
+        />
+        <div>
+          <button className="button">Save Expense</button>
+        </div>
+      </form>
     );
   }
 }
+
+ExpenseForm.propTypes = {
+  expense: PropTypes.object,
+  onSubmit: PropTypes.func,
+};

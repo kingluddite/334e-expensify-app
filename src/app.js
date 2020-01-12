@@ -17,6 +17,7 @@ import { login, logout } from './actions/auth';
 import getVisibleExpenses from './selectors/expenses';
 // routes
 import AppRouter, { history } from './routers/AppRouter';
+import LoadingPage from './components/LoadingPage';
 // custom CSS
 import './styles/styles.scss';
 
@@ -37,7 +38,7 @@ const renderApp = () => {
   }
 };
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
+ReactDOM.render(<LoadingPage />, document.getElementById('root'));
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {

@@ -1,3 +1,8 @@
+/* universal selector to fix box-sizing */
+* {
+  box-sizing: border-box;
+}
+
 // all fonts are base 10
 html {
   font-size: 62.5%

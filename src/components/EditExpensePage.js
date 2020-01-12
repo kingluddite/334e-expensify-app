@@ -1,3 +1,4 @@
+/* eslint no-undef: 0 */ // --> OFF
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -18,10 +19,22 @@ export class EditExpensePage extends React.Component {
   render() {
     // const { expense, dispatch, history } = this.props;
     return (
-      <div>
-        <ExpenseForm expense={this.props.expense} onSubmit={this.onSubmit} />
-        <button onClick={this.onRemove}>Remove</button>
+      <>
+      <div className="page-header">
+        <div className="content-container">
+          <h1 className="page-header__title">Edit Expense</h1>
+        </div>
+        {/* END .content-container */}
       </div>
+      {/* END .page-header */}
+        <div className="content-container">
+          <ExpenseForm expense={this.props.expense} onSubmit={this.onSubmit} />
+          <button className="button button--secondary" onClick={this.onRemove}>
+            Remove Expense
+          </button>
+        </div>
+        {/* END .content-container */}
+      </>
     );
   }
 }
